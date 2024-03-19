@@ -25,6 +25,7 @@ namespace Praktika1_Entity
         {
             InitializeComponent();
             Kamen.ItemsSource = Bd.Post.ToList();
+            FilterBox.ItemsSource = Bd.Post.ToList();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -43,10 +44,10 @@ namespace Praktika1_Entity
         {
 
             try
-            { 
-             Bd.Post.Remove(Kamen.SelectedItem as Post);
-            Bd.SaveChanges();
-            Kamen.ItemsSource = Bd.Post.ToList();
+            {
+                Bd.Post.Remove(Kamen.SelectedItem as Post);
+                Bd.SaveChanges();
+                Kamen.ItemsSource = Bd.Post.ToList();
             }
             catch
             {
@@ -54,18 +55,34 @@ namespace Praktika1_Entity
             }
         }
 
-    
 
-    private void Insert_Click(object sender, RoutedEventArgs e)
-    {
-        PostInserter window = new PostInserter();
-        window.Show();
-        Close();
+
+        private void Insert_Click(object sender, RoutedEventArgs e)♥
+        {
+            PostInserter window = new PostInserter();
+            window.Show();
+            Close();
+        }
+
+        private void Kamen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = FilterBox.SelectedItem as Post;
+            Kamen.ItemsSource = Bd.Post.ToList().Where(item => item.Post_Name == selected.Post_Name).ToList();
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            Kamen.ItemsSource = Bd.Post.ToList();
+        }
+
+        private void Searcher(object sender, RoutedEventArgs e)
+        {
+            Kamen.ItemsSource = Bd.Post.ToList().Where(item => item.Post_Name.Contains(TextField.Text));
+
+        }
     }
-
-    private void Kamen_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-
-    }
-}
 }

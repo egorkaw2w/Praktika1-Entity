@@ -25,6 +25,7 @@ namespace Praktika1_Entity
         {
             InitializeComponent();
             Kamen.ItemsSource = Bd.Employee.ToList();
+            FilterBox.ItemsSource = Bd.Post.ToList();
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -67,6 +68,24 @@ namespace Praktika1_Entity
         private void Kamen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+        //
+        private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(FilterBox.SelectedItem != null){ 
+            var selected = FilterBox.SelectedItem as Post;
+            Kamen.ItemsSource = Bd.Employee.ToList().Where(item => item.Id_post == selected.PostID);
+        }
+        }
+
+        private void Filter_Click(object sender, RoutedEventArgs e)
+        {
+            Kamen.ItemsSource = Bd.Employee.ToList();
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            Kamen.ItemsSource = Bd.Employee.ToList().Where(item => item.Employee_Surname.Contains(Searcher.Text));
         }
     }
 }

@@ -38,9 +38,17 @@ namespace Praktika1_Entity
         }
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = DataGrid.SelectedItem as Post;
+            try
+            {
+
+                var selected = DataGrid.SelectedItem as Post;
             PostName.Text = selected.Post_Name;
-            Salary.Text =selected.Sallary.ToString();
+            Salary.Text = selected.Sallary.ToString();
+        }
+            catch
+            {
+                MessageBox.Show("низя");
+            }
         }
         private void SaveAndExit_Click(object sender, RoutedEventArgs e)
         {

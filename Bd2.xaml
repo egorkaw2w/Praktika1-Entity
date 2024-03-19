@@ -9,10 +9,30 @@
         Title="Bd2" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
+
         </Grid.RowDefinitions>
-        <Grid Grid.Row="2">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="TextField"></TextBox>
+            <Button x:Name="Filter" Grid.Column="1" Content="Поиск" Click="Searcher"></Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="278*"></ColumnDefinition>
+                <ColumnDefinition Width="59*"/>
+                <ColumnDefinition Width="63*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="FilterBox" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="Post_Name" Grid.ColumnSpan="3" Margin="0,0,126,0"></ComboBox>
+            <Button x:Name="Clear" Grid.Column="2" Content="Очистить" Click="Clear_Click"></Button>
+        </Grid>
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -30,6 +50,6 @@
             <Button x:Name="Back" Grid.Column="0" Content="Назад" Click="Back_Click"/>
             <Button x:Name="Next" Grid.Column="2" Content="Далее" Click="Next_Click" IsEnabled="False"></Button>
         </Grid>
-        <DataGrid x:Name="Kamen" SelectionChanged="Kamen_SelectionChanged"></DataGrid>
+        <DataGrid x:Name="Kamen" Grid.Row="2" SelectionChanged="Kamen_SelectionChanged"></DataGrid>
     </Grid>
 </Window>
